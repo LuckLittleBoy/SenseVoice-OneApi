@@ -1,6 +1,13 @@
 # SenseVoice-OneApi
 基于SenseVoice的funasr版本进行的api发布，可以无缝对接oneapi
 
+### 模型下载
+通过modelscope下载iic/SenseVoiceSmall
+```
+pip install modelscope
+modelscope download --model iic/sensevoicesmall --local_dir LOCAL_DIR
+```
+
 ### Docker部署运行
 ```
 # 根据dockerfile构建镜像
