@@ -1,0 +1,2 @@
+# SenseVoice-OneApi
+基于SenseVoice的funasr版本进行的api发布，可以无缝对接oneapi
