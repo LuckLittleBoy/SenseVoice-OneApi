@@ -26,3 +26,18 @@ python main.py
 CPU：docker run时增加 -e DEVICE_TYPE=cpu
 GPU：docker run时增加 -e DEVICE_TYPE=cuda:0
 ```
+
+### 接口测试
+```
+curl --request POST 'http://127.0.0.1:8000/v1/audio/transcriptions' \
+--header 'Content-Type: multipart/form-data' \
+--form 'file=@audio/asr_example_zh.wav'
+
+返回结果
+{"text": "欢迎大家来体验达摩院推出的语音识别模型"}
+```
+
+### 接入One Api
+渠道类型使用OpenAI或者自定义渠道
+模型填入whisper-1
+代理填写对应的地址：http://ip:8000
