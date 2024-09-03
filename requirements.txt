@@ -1,0 +1,6 @@
+funasr
+fastapi
+uvicorn
+python-multipart
+numpy<=1.26.4
+ffmpeg-python
