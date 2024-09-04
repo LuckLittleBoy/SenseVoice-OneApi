@@ -12,7 +12,7 @@ modelscope download --model iic/sensevoicesmall --local_dir LOCAL_DIR
 ```
 # 根据dockerfile构建镜像
 docker build -t sensevoice-oneapi:1.0 .
-# 通过阿里云镜像仓库拉取
+# 通过阿里云镜像仓库拉取，已包含SenseVoiceSmall模型，无需再下载
 docker pull registry.cn-hangzhou.aliyuncs.com/lucklittleboy/sensevoice-oneapi:1.0
 # 运行
 # 注意在运行前如果本地没有提前下载模型，则会通过modelscope自动下载模型
