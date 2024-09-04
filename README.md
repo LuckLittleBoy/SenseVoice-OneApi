@@ -16,7 +16,7 @@ docker build -t sensevoice-oneapi:1.0 .
 docker pull registry.cn-hangzhou.aliyuncs.com/lucklittleboy/sensevoice-oneapi:1.0
 # 运行
 # 注意在运行前如果本地没有提前下载模型，则会通过modelscope自动下载模型
-docker run -p 8000:8000 sensevoice-oneapi:1.0
+docker run -d -p 8000:8000 sensevoice-oneapi:1.0
 ```
 
 ### 本地安装运行
@@ -47,3 +47,6 @@ curl --request POST 'http://127.0.0.1:8000/v1/audio/transcriptions' \
 渠道类型使用OpenAI或者自定义渠道
 模型填入whisper-1
 代理填写对应的地址：http://ip:8000
+
+### 终语
+请施舍一个star吧
