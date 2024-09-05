@@ -13,7 +13,7 @@ SAMPLE_RATE = 16000
 
 # 模型加载
 model_path = os.getenv("MODEL_PATH", "iic/SenseVoiceSmall")
-vad_path = os.getenv("VAD_PATH", "iic/fsmn-vad")
+vad_path = os.getenv("VAD_PATH", "iic/speech_fsmn_vad_zh-cn-16k-common-pytorch")
 
 # 支持任意时长音频输入
 vad_enable = os.getenv("VAD_ENABLE", False)
