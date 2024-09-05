@@ -2,21 +2,22 @@
 基于SenseVoice的funasr版本进行的api发布，可以无缝对接oneapi
 
 ### 模型下载
-通过modelscope下载iic/SenseVoiceSmall
+通过modelscope下载iic/SenseVoiceSmall和iic/speech_fsmn_vad_zh-cn-16k-common-pytorch
 ```
 pip install modelscope
-modelscope download --model iic/sensevoicesmall --local_dir LOCAL_DIR
+modelscope download --model iic/SenseVoiceSmall --local_dir ./iic/SenseVoiceSmall
+modelscope download --model iic/speech_fsmn_vad_zh-cn-16k-common-pytorch --local_dir ./iic/speech_fsmn_vad_zh-cn-16k-common-pytorch
 ```
 
 ### Docker部署运行
 ```
 # 根据dockerfile构建镜像
 docker build -t sensevoice-oneapi:1.0 .
-# 通过阿里云镜像仓库拉取，已包含SenseVoiceSmall模型，无需再下载
+# 通过阿里云镜像仓库拉取，只包含SenseVoiceSmall模型，无需再下载
 docker pull registry.cn-hangzhou.aliyuncs.com/lucklittleboy/sensevoice-oneapi:1.0
 # 运行
 # 注意在运行前如果本地没有提前下载模型，则会通过modelscope自动下载模型
-docker run -d --name=sensevoice -p 8000:8000 sensevoice-oneapi:1.0
+docker run -d --name=sensevoice -p 8000:8000 -v /home/iic:/app/iic sensevoice-oneapi:1.0
 ```
 
 ### 本地安装运行
