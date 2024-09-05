@@ -13,6 +13,7 @@ SAMPLE_RATE = 16000
 
 # 模型加载
 model_path = os.getenv("MODEL_PATH", "iic/SenseVoiceSmall")
+vad_path = os.getenv("VAD_PATH", "iic/fsmn-vad")
 
 # 支持任意时长音频输入
 vad_enable = os.getenv("VAD_ENABLE", False)
@@ -36,7 +37,7 @@ if vad_enable:
     # 准确预测
     model = AutoModel(
         model=model_path,
-        vad_model="fsmn-vad",
+        vad_model=vad_path,
         vad_kwargs={"max_single_segment_time": 30000},
         trust_remote_code=False,
         device=device_type,
@@ -55,14 +56,14 @@ else:
 
 @app.post("/v1/chat/completions")
 async def test():
-    logging.warning("oneapi channel test")
+    logging.info("oneapi channel test")
     return {"message": ""}
 
 
 @app.post("/v1/audio/transcriptions")
 async def transcriptions(file: UploadFile = File(...)):
     try:
-        logging.warning(f"oneapi audio transcriptions, file content type is {file.content_type}")
+        logging.info(f"oneapi audio transcriptions, file content type is {file.content_type}")
 
         data = load_audio(file.file)
 
@@ -76,7 +77,7 @@ async def transcriptions(file: UploadFile = File(...)):
 
         result = rich_transcription_postprocess(res[0]["text"])
 
-        logging.warning(result)
+        logging.info(f"audio translate result is {result}")
 
         return {"text": result}
     except Exception as e:
