@@ -47,6 +47,7 @@ WORKDIR /app
 
 COPY requirements.txt .
 COPY main.py .
+COPY iic iic/
 COPY --from=ffmpeg /FFmpeg-6.1.1 /FFmpeg-6.1.1
 COPY --from=ffmpeg /root/bin/ffmpeg /usr/local/bin/ffmpeg
 
