@@ -1,7 +1,6 @@
 FROM debian:bookworm AS ffmpeg
 
-COPY sources.list /
-RUN cat /sources.list >> /etc/apt/sources.list
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources
 
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -qq update \
@@ -13,7 +12,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/FFmpeg/FFmpeg.git --depth 1 --branch n6.1.1 --single-branch /FFmpeg-6.1.1    
+RUN git clone https://gitee.com/mirrors/ffmpeg.git --depth 1 --branch n6.1.1 --single-branch /FFmpeg-6.1.1    
 
 WORKDIR /FFmpeg-6.1.1
 
@@ -53,7 +52,7 @@ COPY --from=ffmpeg /root/bin/ffmpeg /usr/local/bin/ffmpeg
 
 RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 RUN pip install --upgrade pip
-RUN pip install torch>=1.11.0 torchaudio --index-url https://download.pytorch.org/whl/cpu
+RUN pip install torch>=1.11.0 torchaudio
 RUN pip install -r requirements.txt
 
 CMD ["python", "main.py"]

@@ -16,24 +16,25 @@ model_path = os.getenv("MODEL_PATH", "iic/SenseVoiceSmall")
 vad_path = os.getenv("VAD_PATH", "iic/speech_fsmn_vad_zh-cn-16k-common-pytorch")
 
 # 支持任意时长音频输入
-vad_enable = os.getenv("VAD_ENABLE", False)
+vad_enable = os.getenv("VAD_ENABLE","True")=="True"
 
 # 推理方式
 device_type = os.getenv("DEVICE_TYPE", "cpu")
 
 # 设置用于 CPU 内部操作并行性的线程数
-cpu_num = os.getenv("ncpu", 4)
+cpu_num = int(os.getenv("ncpu", 4))
 
 # 语言
 language = os.getenv("language", "zh")
 
-batch_size = os.getenv("batch_size", 64)
+batch_size = int(os.getenv("batch_size", 64))
 
-use_itn = os.getenv("use_itn", False)
+use_itn = os.getenv("use_itn","True")=="True"
 
 app = FastAPI()
 
 if vad_enable:
+    print("vad_enable")
     # 准确预测
     model = AutoModel(
         model=model_path,
@@ -45,6 +46,7 @@ if vad_enable:
         disable_update=True
     )
 else:
+    print("vad_disable")
     # 快速预测
     model = AutoModel(
         model=model_path,
