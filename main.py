@@ -9,7 +9,7 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from funasr import AutoModel
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 
-SAMPLE_RATE = 16000
+SAMPLE_RATE = 48000
 
 # 模型加载
 model_path = os.getenv("MODEL_PATH", "iic/SenseVoiceSmall")
