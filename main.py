@@ -19,7 +19,7 @@ vad_path = os.getenv("VAD_PATH", "iic/speech_fsmn_vad_zh-cn-16k-common-pytorch")
 vad_enable = os.getenv("VAD_ENABLE", False)
 
 # 推理方式
-device_type = os.getenv("DEVICE_TYPE", "cpu")
+device_type = os.getenv("DEVICE_TYPE", "cuda:0")
 
 # 设置用于 CPU 内部操作并行性的线程数
 cpu_num = os.getenv("ncpu", 4)
